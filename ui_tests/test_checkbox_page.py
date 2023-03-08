@@ -15,7 +15,6 @@ class TestCheckboxPage:
         assert page.should_be_some_page(self.MAIN_PAGE_URL), f'This is a {driver.get_current.url} page'
         page.find_and_click_element(MainPageLocators.ELEMENTS_CARD)
         assert page.should_be_some_page(self.ELEMENTS_PAGE_URL), f'This is a {driver.get_current.url} page'
-        #  !!! "В раскрытом меню справа кликнуть ЛКМ Check Box" -> меню находится слева !!!
         page.find_and_click_element(ElementsPageLocators.CHECK_BOX)
         assert page.should_be_some_page(self.CHECKBOX_PAGE_URL), f'This is a {driver.get_current.url} page'
         page.find_and_click_element(CheckBoxPageLocators.HOME)

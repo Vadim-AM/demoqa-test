@@ -10,13 +10,10 @@ from webdriver_manager.firefox import GeckoDriverManager
 @pytest.fixture(params=['chrome', 'firefox'])
 def driver(request) -> webdriver:
     driver = None
-    match request.param:
-        case 'chrome':
-            options = webdriver.ChromeOptions()
-            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
-        case 'firefox':
-            options = webdriver.FirefoxOptions()
-            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
+    if request.param == 'chrome':
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    if request.param == 'firefox':
+        driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
     driver.set_window_size(1920, 1080)
     yield driver
     driver.quit()
