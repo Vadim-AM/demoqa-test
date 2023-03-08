@@ -11,8 +11,12 @@ from webdriver_manager.firefox import GeckoDriverManager
 def driver(request) -> webdriver:
     driver = None
     if request.param == 'chrome':
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")  # run in headless mode
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     if request.param == 'firefox':
+        options = webdriver.FirefoxOptions()
+        # options.add_argument("--headless")  # run in headless mode
         driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
     driver.set_window_size(1920, 1080)
     yield driver
